@@ -1,0 +1,15 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "version": "4.0.1",
+  "name": "Observation",
+  "kind": "resource",
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "snapshot": {
+    "element": [
+      { "id": "Observation", "path": "Observation" },
+      { "id": "Observation.code", "path": "Observation.code" }
+    ]
+  }
+}

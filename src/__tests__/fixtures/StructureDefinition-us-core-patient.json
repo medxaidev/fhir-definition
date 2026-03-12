@@ -1,0 +1,14 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+  "version": "6.1.0",
+  "name": "USCorePatientProfile",
+  "kind": "resource",
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "differential": {
+    "element": [
+      { "id": "Patient.name", "path": "Patient.name", "min": 1 }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "resourceType": "CodeSystem",
+  "url": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+  "version": "0.1.0",
+  "name": "ConditionClinicalStatusCodes",
+  "status": "draft",
+  "content": "complete",
+  "concept": [
+    { "code": "active", "display": "Active" },
+    { "code": "recurrence", "display": "Recurrence" },
+    { "code": "relapse", "display": "Relapse" },
+    { "code": "inactive", "display": "Inactive" },
+    { "code": "remission", "display": "Remission" },
+    { "code": "resolved", "display": "Resolved" }
+  ]
+}

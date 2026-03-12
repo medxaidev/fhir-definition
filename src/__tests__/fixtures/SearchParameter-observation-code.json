@@ -1,0 +1,11 @@
+{
+  "resourceType": "SearchParameter",
+  "url": "http://hl7.org/fhir/SearchParameter/Observation-code",
+  "version": "4.0.1",
+  "name": "code",
+  "code": "code",
+  "base": ["Observation"],
+  "type": "token",
+  "expression": "Observation.code",
+  "description": "The code of the observation type"
+}

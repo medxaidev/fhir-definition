@@ -1,0 +1,20 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "version": "4.0.1",
+  "name": "Patient",
+  "kind": "resource",
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
+  "snapshot": {
+    "element": [
+      { "id": "Patient", "path": "Patient" },
+      { "id": "Patient.name", "path": "Patient.name" }
+    ]
+  },
+  "differential": {
+    "element": [
+      { "id": "Patient.name", "path": "Patient.name" }
+    ]
+  }
+}

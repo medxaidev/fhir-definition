@@ -1,0 +1,6 @@
+{
+  "resourceType": "CapabilityStatement",
+  "url": "http://example.com/CapabilityStatement/test",
+  "version": "1.0.0",
+  "name": "TestCapabilityStatement"
+}

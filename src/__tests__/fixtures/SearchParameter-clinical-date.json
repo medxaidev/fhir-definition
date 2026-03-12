@@ -1,0 +1,11 @@
+{
+  "resourceType": "SearchParameter",
+  "url": "http://hl7.org/fhir/SearchParameter/clinical-date",
+  "version": "4.0.1",
+  "name": "date",
+  "code": "date",
+  "base": ["Condition", "Encounter", "Observation"],
+  "type": "date",
+  "expression": "Condition.onset | Encounter.period | Observation.effective",
+  "description": "Date record was first recorded"
+}
