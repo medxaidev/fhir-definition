@@ -1,0 +1,10 @@
+{
+  "resourceType": "SearchParameter",
+  "url": "http://hl7.org/fhir/SearchParameter/Patient-name",
+  "version": "4.0.1",
+  "name": "name",
+  "code": "name",
+  "base": ["Patient"],
+  "type": "string",
+  "expression": "Patient.name"
+}

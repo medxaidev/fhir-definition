@@ -1,0 +1,8 @@
+{
+  "resourceType": "CodeSystem",
+  "url": "http://terminology.hl7.org/CodeSystem/observation-category",
+  "version": "0.1.0",
+  "name": "ObservationCategoryCodes",
+  "status": "draft",
+  "content": "complete"
+}

@@ -1,0 +1,7 @@
+{
+  "resourceType": "ValueSet",
+  "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+  "version": "4.0.1",
+  "name": "AdministrativeGender",
+  "status": "active"
+}

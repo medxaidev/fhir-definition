@@ -1,0 +1,8 @@
+{
+  "resourceType": "CodeSystem",
+  "url": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+  "version": "0.1.0",
+  "name": "ConditionClinicalStatusCodes",
+  "status": "draft",
+  "content": "complete"
+}

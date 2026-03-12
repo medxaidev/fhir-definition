@@ -1,0 +1,6 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.com/StructureDefinition/NoManifest",
+  "version": "1.0.0",
+  "name": "NoManifest"
+}

@@ -1,0 +1,9 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.com/StructureDefinition/CustomCondition",
+  "version": "1.0.0",
+  "name": "CustomCondition",
+  "kind": "resource",
+  "type": "Condition",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Condition"
+}

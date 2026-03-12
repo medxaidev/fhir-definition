@@ -1,7 +1,7 @@
 {
   "name": "fhir-definition",
-  "version": "0.7.2",
-  "description": "FHIR Definition Parser and Validator for TypeScript/Node.js with zero dependencies.",
+  "version": "0.4.0",
+  "description": "Pure FHIR Definition Store — Zero dependencies, filesystem-first, production-ready. Load and query StructureDefinition, ValueSet, CodeSystem, SearchParameter with multi-package dependency resolution.",
   "homepage": "https://github.com/medxaidev/fhir-definition#readme",
   "license": "MIT",
   "author": "Fangjun <fangjun20208@gmail.com>",

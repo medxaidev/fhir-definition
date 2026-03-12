@@ -14,6 +14,12 @@ export type {
   LoadDirectoryResult,
   LoadPackagesResult,
   LoadError,
+  PackageScanOptions,
+  DependencyResolutionResult,
+  PackageLoadResult,
+  LoadPackagesOptions,
+  LoadPackagesOutput,
+  ConceptInfo,
 } from './types.js';
 
 export { LoadErrorCode, SUPPORTED_RESOURCE_TYPES } from './types.js';

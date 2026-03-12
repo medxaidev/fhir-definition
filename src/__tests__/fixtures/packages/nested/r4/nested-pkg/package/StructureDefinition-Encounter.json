@@ -1,0 +1,8 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.com/StructureDefinition/Encounter",
+  "version": "1.0.0",
+  "name": "Encounter",
+  "kind": "resource",
+  "type": "Encounter"
+}

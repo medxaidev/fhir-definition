@@ -1,0 +1,8 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.com/StructureDefinition/CircularA",
+  "version": "1.0.0",
+  "name": "CircularA",
+  "kind": "resource",
+  "type": "Basic"
+}

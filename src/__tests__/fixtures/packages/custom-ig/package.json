@@ -1,0 +1,7 @@
+{
+  "name": "custom-ig",
+  "version": "1.0.0",
+  "dependencies": {
+    "hl7.fhir.us.core": "6.1.0"
+  }
+}

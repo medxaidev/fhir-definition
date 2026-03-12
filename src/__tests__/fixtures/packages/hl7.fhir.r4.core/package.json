@@ -1,0 +1,8 @@
+{
+  "name": "hl7.fhir.r4.core",
+  "version": "4.0.1",
+  "type": "fhir-definition",
+  "description": "FHIR R4 Core Definitions",
+  "fhirVersions": ["4.0.1"],
+  "dependencies": {}
+}

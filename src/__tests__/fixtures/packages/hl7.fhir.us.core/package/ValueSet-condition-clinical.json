@@ -1,0 +1,7 @@
+{
+  "resourceType": "ValueSet",
+  "url": "http://hl7.org/fhir/ValueSet/condition-clinical",
+  "version": "4.0.1",
+  "name": "ConditionClinicalStatusCodes",
+  "status": "active"
+}

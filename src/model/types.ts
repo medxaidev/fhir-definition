@@ -68,6 +68,15 @@ export interface SearchParameter extends FhirDefinitionResource {
   description?: string;
 }
 
+// ─── Resolver Types ────────────────────────────────────────────────────────
+
+export interface ConceptInfo {
+  code: string;
+  display?: string;
+  definition?: string;
+  system: string;
+}
+
 // ─── Package Types ──────────────────────────────────────────────────────────
 
 export interface DefinitionPackage {
@@ -133,6 +142,37 @@ export interface LoadPackagesResult {
   errors: LoadError[];
 }
 
+// ─── Package Scan & Load Options ───────────────────────────────────────────
+
+export interface PackageScanOptions {
+  recursive?: boolean;  // 默认 true
+  maxDepth?: number;    // 默认 3
+}
+
+export interface DependencyResolutionResult {
+  success: boolean;
+  sorted: DefinitionPackage[];
+  errors: LoadError[];      // CIRCULAR_DEPENDENCY
+  warnings: LoadError[];    // MISSING_DEPENDENCY (non-fatal)
+}
+
+export interface PackageLoadResult {
+  success: boolean;
+  package: LoadedPackage;
+  resources: FhirDefinitionResource[];
+  errors: LoadError[];
+}
+
+export interface LoadPackagesOptions {
+  resourceTypes?: FhirDefinitionResourceType[];
+  scanOptions?: PackageScanOptions;
+}
+
+export interface LoadPackagesOutput {
+  registry: import('../registry/definition-registry.js').DefinitionRegistry;
+  result: LoadPackagesResult;
+}
+
 // ─── Error Types ────────────────────────────────────────────────────────────
 
 export enum LoadErrorCode {
@@ -142,6 +182,9 @@ export enum LoadErrorCode {
   UNSUPPORTED_RESOURCE_TYPE = 'UNSUPPORTED_RESOURCE_TYPE',
   IO_ERROR = 'IO_ERROR',
   UNKNOWN_ERROR = 'UNKNOWN_ERROR',
+  CIRCULAR_DEPENDENCY = 'CIRCULAR_DEPENDENCY',
+  MISSING_DEPENDENCY = 'MISSING_DEPENDENCY',
+  INVALID_MANIFEST = 'INVALID_MANIFEST',
 }
 
 export interface LoadError {
