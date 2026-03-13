@@ -173,6 +173,54 @@ export interface LoadPackagesOutput {
   result: LoadPackagesResult;
 }
 
+// ─── Package Registry & Cache Types (Phase 2) ──────────────────────────────
+
+export interface PackageRegistryClientOptions {
+  /** Registry base URL. Default: 'https://packages.fhir.org' */
+  registryUrl?: string;
+  /** HTTP timeout in ms. Default: 30000 */
+  timeout?: number;
+}
+
+export interface PackageCacheOptions {
+  /** Local cache directory. Default: ~/.fhir/packages */
+  cacheDir?: string;
+}
+
+export interface PackageCacheEntry {
+  name: string;
+  version: string;
+  path: string;
+}
+
+export interface NamedPackageLoadOptions {
+  /** Specific version to load. If omitted, fetches latest. */
+  version?: string;
+  /** If provided, auto-register loaded resources into this registry. */
+  into?: import('../registry/definition-registry.js').DefinitionRegistry;
+}
+
+export interface LoadManyOptions {
+  /** If provided, auto-register loaded resources into this registry. */
+  into?: import('../registry/definition-registry.js').DefinitionRegistry;
+  /** Load packages in parallel. Default: false (sequential for dependency safety). */
+  parallel?: boolean;
+}
+
+export interface LoadPackagesByNameOptions {
+  /** If provided, register resources into this registry instead of creating a new one. */
+  into?: import('../registry/definition-registry.js').DefinitionRegistry;
+  /** Local cache directory. Default: ~/.fhir/packages */
+  cacheDir?: string;
+  /** Registry URL. Default: 'https://packages.fhir.org' */
+  registryUrl?: string;
+}
+
+export interface LoadPackagesByNameOutput {
+  registry: import('../registry/definition-registry.js').DefinitionRegistry;
+  packages: LoadedPackage[];
+}
+
 // ─── Error Types ────────────────────────────────────────────────────────────
 
 export enum LoadErrorCode {
@@ -185,6 +233,9 @@ export enum LoadErrorCode {
   CIRCULAR_DEPENDENCY = 'CIRCULAR_DEPENDENCY',
   MISSING_DEPENDENCY = 'MISSING_DEPENDENCY',
   INVALID_MANIFEST = 'INVALID_MANIFEST',
+  DOWNLOAD_FAILED = 'DOWNLOAD_FAILED',
+  CACHE_ERROR = 'CACHE_ERROR',
+  EXTRACT_ERROR = 'EXTRACT_ERROR',
 }
 
 export interface LoadError {

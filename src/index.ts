@@ -21,6 +21,14 @@ export type {
   LoadPackagesOptions,
   LoadPackagesOutput,
   ConceptInfo,
+  // Phase 2: Package Registry & Cache
+  PackageRegistryClientOptions,
+  PackageCacheOptions,
+  PackageCacheEntry,
+  NamedPackageLoadOptions,
+  LoadManyOptions,
+  LoadPackagesByNameOptions,
+  LoadPackagesByNameOutput,
 } from './model/index.js';
 
 export { LoadErrorCode, SUPPORTED_RESOURCE_TYPES } from './model/index.js';
@@ -38,7 +46,10 @@ export { PackageScanner } from './package/index.js';
 export type { PackageScanResult } from './package/index.js';
 export { DependencyResolver } from './package/index.js';
 export { PackageLoader } from './package/index.js';
+export type { PackageLoaderOptions } from './package/index.js';
 export { PackageManager } from './package/index.js';
+export { PackageRegistryClient } from './package/index.js';
+export { PackageCache } from './package/index.js';
 
 // ─── Contract ───────────────────────────────────────────────────────────────
 export type { DefinitionProvider } from './contract/index.js';
@@ -52,3 +63,4 @@ export { SearchParameterResolver } from './resolver/index.js';
 // ─── Convenience functions ──────────────────────────────────────────────
 export { loadFromDirectory } from './load-from-directory.js';
 export { loadDefinitionPackages } from './load-definition-packages.js';
+export { loadPackagesByName } from './load-packages-by-name.js';

@@ -20,6 +20,14 @@ export type {
   LoadPackagesOptions,
   LoadPackagesOutput,
   ConceptInfo,
+  // Phase 2: Package Registry & Cache
+  PackageRegistryClientOptions,
+  PackageCacheOptions,
+  PackageCacheEntry,
+  NamedPackageLoadOptions,
+  LoadManyOptions,
+  LoadPackagesByNameOptions,
+  LoadPackagesByNameOutput,
 } from './types.js';
 
 export { LoadErrorCode, SUPPORTED_RESOURCE_TYPES } from './types.js';

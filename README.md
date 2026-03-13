@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/fhir-definition.svg)](https://www.npmjs.com/package/fhir-definition)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
-[![Tests](https://img.shields.io/badge/tests-215%2F215-brightgreen.svg)](./devdocs/ROADMAP.md)
+[![Tests](https://img.shields.io/badge/tests-236%2F236-brightgreen.svg)](./devdocs/ROADMAP.md)
 
 **fhir-definition** is a lightweight, zero-dependency TypeScript library for loading, managing, and querying FHIR definition resources (StructureDefinition, ValueSet, CodeSystem, SearchParameter). Designed for embedded FHIR stacks, it provides a clean separation between definition storage and runtime validation logic.
 
@@ -15,12 +15,13 @@
 
 - ✅ **Zero Dependencies** — Pure TypeScript, no external runtime dependencies
 - ✅ **Filesystem-First** — Load from directories, packages, or custom sources
+- ✅ **Package Registry** — Download FHIR packages from packages.fhir.org with local cache
 - ✅ **Package System** — Multi-package loading with dependency resolution (Kahn's algorithm)
 - ✅ **Version-Aware** — Dual SD index: main + versioned (`url|version` format support)
 - ✅ **Resolver API** — High-level query interfaces for all resource types
 - ✅ **Runtime Integration** — Structural typing compatibility with `fhir-runtime` via `DefinitionProvider`
 - ✅ **Performance** — O(1) lookups, <200ms multi-package load, <0.01ms query
-- ✅ **100% Test Coverage** — 215 tests across 20 test files
+- ✅ **236 Tests** — 100% pass rate across 22 test files
 - ✅ **TypeScript Native** — Full type safety with ESM + CJS dual build
 
 ---
@@ -77,6 +78,20 @@ const { registry, result } = loadDefinitionPackages("./definitions");
 
 console.log(result.loadedPackages); // [r4.core, us.core] (dependency order)
 console.log(registry.getStatistics()); // { structureDefinitionCount: 4, ... }
+```
+
+### Load by Name from Registry (v0.5.0)
+
+```typescript
+import { loadPackagesByName } from "fhir-definition";
+
+// Downloads from packages.fhir.org, caches locally at ~/.fhir/packages/
+const { registry, packages } = await loadPackagesByName([
+  { name: "hl7.fhir.r4.core", version: "4.0.1" },
+  { name: "hl7.fhir.us.core", version: "6.1.0" },
+]);
+
+console.log(packages.map((p) => p.name)); // ['hl7.fhir.r4.core', 'hl7.fhir.us.core']
 ```
 
 ### Use Resolvers (High-Level API)
@@ -305,7 +320,7 @@ Measured on fixture datasets (Phase 4 baseline tests):
 
 ## Testing
 
-- **215 tests** across 20 test files
+- **236 tests** across 22 test files
 - **100% pass rate** (vitest)
 - **Zero TypeScript errors** (`tsc --noEmit`)
 - Test categories: unit, integration, fixture-based, performance, contract
@@ -334,6 +349,7 @@ npm test  # Run all tests
 | v0.2.0  | ✅     | Package system + dependency resolution              |
 | v0.3.0  | ✅     | Resolvers + IG integration                          |
 | v0.4.0  | ✅     | Runtime integration contract + performance baseline |
+| v0.5.0  | ✅     | Package registry download + local cache             |
 | v1.0.0  | ⏳     | Awaiting fhir-runtime/persistence integration       |
 
 ---

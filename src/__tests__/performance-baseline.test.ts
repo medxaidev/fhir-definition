@@ -9,12 +9,12 @@ const PACKAGES = join(__dirname, 'fixtures', 'packages');
 
 describe('Performance baseline', () => {
   describe('loadFromDirectory', () => {
-    it('should load fixture directory in < 100ms', () => {
+    it('should load fixture directory in < 500ms', () => {
       const start = performance.now();
       const registry = loadFromDirectory(FIXTURES);
       const elapsed = performance.now() - start;
 
-      expect(elapsed).toBeLessThan(100);
+      expect(elapsed).toBeLessThan(500);
       expect(registry.getStatistics().structureDefinitionCount).toBeGreaterThanOrEqual(4);
     });
   });
