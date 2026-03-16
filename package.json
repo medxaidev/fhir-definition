@@ -1,6 +1,6 @@
 {
   "name": "fhir-definition",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Pure FHIR Definition Store — Zero dependencies, filesystem-first, production-ready. Load and query StructureDefinition, ValueSet, CodeSystem, SearchParameter with multi-package dependency resolution.",
   "homepage": "https://github.com/medxaidev/fhir-definition#readme",
   "license": "MIT",

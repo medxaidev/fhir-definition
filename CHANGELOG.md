@@ -2,6 +2,49 @@
 
 All notable changes to `fhir-definition` will be documented in this file.
 
+## [0.6.0] — FHIR Version Metadata, Semver Resolution & Network Resilience
+
+### Added
+
+- `DefinitionRegistry.getLoadedFhirVersions()` — Returns deduplicated FHIR version strings from loaded packages (e.g. `['4.0.1']`)
+- `InMemoryDefinitionRegistry` extracts FHIR versions from `LoadedPackage.fhirVersions` during `registerPackage()`
+- `PackageRegistryClient.resolveVersion(name, range)` — Resolve semver ranges (`^4.0.0`, `latest`, exact) to concrete versions
+- Built-in semver caret (`^`) range resolution (zero external dependencies)
+- `PackageRegistryClientOptions.retry` — Configurable retry with exponential backoff (`maxAttempts`, `delayMs`, `timeout`)
+- `PackageRegistryClientOptions.offline` — Offline mode: skip network, use cached packages only
+- Offline fallback: on download failure, automatically fall back to stale cached version
+- `PackageCache` stale cache query support for offline fallback
+- 2 new error codes: `VERSION_RESOLVE_FAILED`, `OFFLINE_NOT_CACHED`
+
+### Semver Resolution
+
+```
+client.resolveVersion('hl7.fhir.r4.core', '^4.0.0')   → '4.0.1'
+client.resolveVersion('hl7.fhir.r4.core', 'latest')    → '4.0.1'
+client.resolveVersion('hl7.fhir.r4.core', '4.0.1')     → '4.0.1' (passthrough)
+```
+
+### Retry & Offline
+
+```
+// Retry with exponential backoff (default: 3 attempts, 1s base delay)
+const client = new PackageRegistryClient({
+  retry: { maxAttempts: 3, delayMs: 1000, timeout: 30000 },
+  offline: false
+});
+
+// Offline mode: use only cached packages
+const client = new PackageRegistryClient({ offline: true });
+```
+
+### Backward Compatibility
+
+- All v0.5.0 APIs remain unchanged
+- New `PackageRegistryClientOptions` fields are optional with sensible defaults
+- Zero new runtime dependencies (semver resolution is built-in)
+
+---
+
 ## [0.5.0] — Package Registry & Cache
 
 ### Added

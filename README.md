@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/fhir-definition.svg)](https://www.npmjs.com/package/fhir-definition)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
-[![Tests](https://img.shields.io/badge/tests-236%2F236-brightgreen.svg)](./devdocs/ROADMAP.md)
+[![Tests](https://img.shields.io/badge/tests-260%2B-brightgreen.svg)](./devdocs/ROADMAP.md)
 
 **fhir-definition** is a lightweight, zero-dependency TypeScript library for loading, managing, and querying FHIR definition resources (StructureDefinition, ValueSet, CodeSystem, SearchParameter). Designed for embedded FHIR stacks, it provides a clean separation between definition storage and runtime validation logic.
 
@@ -20,8 +20,11 @@
 - ✅ **Version-Aware** — Dual SD index: main + versioned (`url|version` format support)
 - ✅ **Resolver API** — High-level query interfaces for all resource types
 - ✅ **Runtime Integration** — Structural typing compatibility with `fhir-runtime` via `DefinitionProvider`
+- ✅ **Semver Resolution** — Resolve version ranges (`^4.0.0`, `latest`) from packages.fhir.org
+- ✅ **Network Resilience** — Configurable retry with exponential backoff, timeout, offline fallback
+- ✅ **FHIR Version Metadata** — `getLoadedFhirVersions()` for loaded package version introspection
 - ✅ **Performance** — O(1) lookups, <200ms multi-package load, <0.01ms query
-- ✅ **236 Tests** — 100% pass rate across 22 test files
+- ✅ **260+ Tests** — 100% pass rate (vitest)
 - ✅ **TypeScript Native** — Full type safety with ESM + CJS dual build
 
 ---
@@ -80,7 +83,7 @@ console.log(result.loadedPackages); // [r4.core, us.core] (dependency order)
 console.log(registry.getStatistics()); // { structureDefinitionCount: 4, ... }
 ```
 
-### Load by Name from Registry (v0.5.0)
+### Load by Name from Registry
 
 ```typescript
 import { loadPackagesByName } from "fhir-definition";
@@ -92,6 +95,28 @@ const { registry, packages } = await loadPackagesByName([
 ]);
 
 console.log(packages.map((p) => p.name)); // ['hl7.fhir.r4.core', 'hl7.fhir.us.core']
+```
+
+### Resolve Semver Ranges (v0.6.0)
+
+```typescript
+import { PackageRegistryClient } from "fhir-definition";
+
+const client = new PackageRegistryClient();
+const version = await client.resolveVersion("hl7.fhir.r4.core", "^4.0.0");
+console.log(version); // '4.0.1'
+```
+
+### Query FHIR Versions (v0.6.0)
+
+```typescript
+import { loadPackagesByName } from "fhir-definition";
+
+const { registry } = await loadPackagesByName([
+  { name: "hl7.fhir.r4.core", version: "4.0.1" },
+]);
+
+console.log(registry.getLoadedFhirVersions()); // ['4.0.1']
 ```
 
 ### Use Resolvers (High-Level API)
@@ -187,6 +212,7 @@ interface DefinitionRegistry {
   // Metadata
   getLoadedPackages(): LoadedPackage[];
   getStatistics(): RegistryStatistics;
+  getLoadedFhirVersions(): string[]; // v0.6.0
 }
 ```
 
@@ -297,10 +323,11 @@ my-package/
 
 **Design Principles:**
 
-- No HTTP, no database, no validation logic
+- No database, no validation logic (HTTP only for optional package registry)
 - Filesystem-first with future extensibility
 - Dependency Inversion (runtime depends on abstract `DefinitionProvider`)
 - Zero runtime dependencies
+- Network resilience: retry, timeout, offline fallback
 
 ---
 
@@ -320,7 +347,7 @@ Measured on fixture datasets (Phase 4 baseline tests):
 
 ## Testing
 
-- **236 tests** across 22 test files
+- **260+ tests** across 24+ test files
 - **100% pass rate** (vitest)
 - **Zero TypeScript errors** (`tsc --noEmit`)
 - Test categories: unit, integration, fixture-based, performance, contract
@@ -350,6 +377,7 @@ npm test  # Run all tests
 | v0.3.0  | ✅     | Resolvers + IG integration                          |
 | v0.4.0  | ✅     | Runtime integration contract + performance baseline |
 | v0.5.0  | ✅     | Package registry download + local cache             |
+| v0.6.0  | ✅     | FHIR version metadata, semver resolution, retry     |
 | v1.0.0  | ⏳     | Awaiting fhir-runtime/persistence integration       |
 
 ---
